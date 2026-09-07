@@ -1,0 +1,17 @@
+{
+  "name": "krisa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mirror the KRISA handbook from sqa.jdn.gov.my into Markdown",
+  "scripts": {
+    "fetch": "bun scripts/fetch-krisa.ts",
+    "fetch:pdf": "bun scripts/fetch-krisa.ts --pdf",
+    "fetch:refresh": "bun scripts/fetch-krisa.ts --refresh",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.0",
+    "typescript": "^5.9.0"
+  }
+}
