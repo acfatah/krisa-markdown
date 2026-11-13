@@ -140,10 +140,10 @@ rujukan; sila rujuk portal MySQA untuk versi rasmi dan terkini.
 ## Menjana semula
 
 ```bash
-python3 scripts/fetch_krisa.py           # bab + templat
-python3 scripts/fetch_krisa.py --pdf     # sertakan PDF rasmi
-python3 scripts/fetch_krisa.py --refresh # abaikan cache
+bun run fetch           # bab + templat
+bun run fetch:pdf       # sertakan PDF rasmi
+bun run fetch:refresh   # abaikan cache
 ```
 
-Tiada kebergantungan luar; pustaka standard Python 3 sahaja.
+Memerlukan Bun sahaja; tiada kebergantungan masa larian luar.
 Muat turun disimpan dalam `.cache/`.
