@@ -1,5 +1,18 @@
 # KRISA — Kejuruteraan Sistem Aplikasi Sektor Awam
 
+<p>
+  <a href="./LICENSE">
+    <img
+      alt="License"
+      src="https://img.shields.io/github/license/acfatah/krisa-markdown?style=flat-square"
+    ></a>
+  <a href="https://github.com/acfatah/krisa-markdown/commits/main">
+    <img
+      alt="Last commit"
+      src="https://img.shields.io/github/last-commit/acfatah/krisa-markdown?display_timestamp=committer&style=flat-square"
+    ></a>
+</p>
+
 Salinan Markdown bagi buku panduan KRISA terbitan Jabatan Digital
 Negara (JDN), untuk rujukan mudah dan carian teks penuh.
 
@@ -147,3 +160,9 @@ bun run fetch:refresh   # abaikan cache
 
 Memerlukan Bun sahaja; tiada kebergantungan masa larian luar.
 Muat turun disimpan dalam `.cache/`.
+
+## Lesen
+
+Skrip dalam `scripts/` dan fail konfigurasi dilesenkan di bawah
+[MIT](LICENSE). Kandungan dalam `docs/` dan `templat/` kekal hak milik
+JDN dan tidak termasuk dalam lesen ini.
