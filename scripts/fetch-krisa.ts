@@ -164,8 +164,10 @@ const NUMBERED = new RegExp(`^(\\d+\\.\\d+)${PY_S}+(.*)`);
 
 /** Walk the index page and group its sections into chapters.
  *
- * Each chapter ends with a "Muat Turun Bab N" PDF link, which is what
- * tells us where one chapter stops and the next begins.
+ * The contents live in the sidebar's `<ul id="myUL">`; reading only that
+ * list keeps the site menu and footer links out. Each chapter ends with
+ * a "Muat Turun Bab N" PDF link, which is what tells us where one
+ * chapter stops and the next begins.
  */
 function toc(markup: string): Toc {
   const sections: Section[] = [];
@@ -173,14 +175,14 @@ function toc(markup: string): Toc {
   const pdfs = new Map<number, string>();
   let chapter = 0;
 
-  for (const [href, text] of links(markup)) {
+  for (const [href, text] of links(extract(markup, "id", "myUL") ?? "")) {
     const pdf = /BAB(\d)-KRISA-[a-z]+\.pdf/i.exec(href);
     if (pdf) {
       chapter = Number(pdf[1]);
       pdfs.set(chapter, absolute(href));
       continue;
     }
-    if (!href.includes("/index.php/ms/") || !href.includes("/../")) continue;
+    if (!href.includes("/index.php/ms/")) continue;
 
     const number = NUMBERED.exec(text);
     if (number) {
@@ -445,6 +447,11 @@ async function main(): Promise<number> {
   if (index === null) return 1;
   const { sections, extras, pdfs } = toc(index);
   console.log(`Bahagian: ${sections.length} + ${extras.length} lampiran`);
+  if (sections.length === 0) {
+    // A layout change on the site; writing now would empty README.md.
+    process.stderr.write("fetch-krisa.ts: no sections found on the index page\n");
+    return 1;
+  }
   const written = await chapters(sections, extras);
   console.log("Templat:");
   const docs = await templates();
